@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "rDWDg9GEMID6TwOZ/pmgcc93u8ho4UHkISU3vwOU735qzszMdoowt+6EQzunk2DZ6MCSYIDUtspC7710jAhz5Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Hp\\Desktop\\isi\\Finally-Project-Cars-\\ConsoleApp.ProjectCar\\ConsoleApp.ProjectCar\\ConsoleApp.ProjectCar.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Hp\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.14\\microsoft.netcore.app.host.win-x64.5.0.14.nupkg.sha512"
+  ],
+  "logs": []
+}
