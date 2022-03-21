@@ -17,6 +17,7 @@ namespace ConsoleApp.ProjectCar.Manegers
             Array.Resize(ref data,len+1);
             data[len] = entity;
         }
+
         public void Remove(Brands entity)
         {
             int len = data.Length;
@@ -27,10 +28,25 @@ namespace ConsoleApp.ProjectCar.Manegers
                 data[i] = data[i + 1];
             }
             Array.Resize(ref data, len + 1);
-            //data[len] = entity;
-
-
+            
         }
+        public void Edit(Brands entity)
+        {
+            int index = Array.IndexOf(data, entity);
+            if (index == -1)
+                return;
+
+            data[index] = entity;
+        }
+
+
+        //public void Edit(Brands entity)
+        //{
+        //    int index =Array.IndexOf(data, entity);
+        //    if (index == -1)
+        //        return;
+        //    data[index] = entity;
+        //}
         public Brands[] GetAll()
         {
             return data;

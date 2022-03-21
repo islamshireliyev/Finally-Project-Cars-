@@ -15,11 +15,12 @@ namespace ConsoleApp.ProjectCar
         }
         public int Id { get; private set; }
         public string Name { get; set; }
+       
         
         public override string ToString()
         {
 
-            return $"{Id}. {Name}";
+            return $"{Id}. Brend:{Name}";
         }
     }
 }

@@ -14,16 +14,24 @@ namespace ConsoleApp.ProjectCar
             this.Id = ++counter;
         }
         public int Id { get; private set; }
+        public int ModelsId { get; set; }
         public DateTime GraduationYear { get; set; }
+
+        public double Price { get; set; }
 
         public string Color { get; set; }
 
-        public double Engine { get; set; }
+        public string Engine { get; set; }
         public string FullType { get; set; }
-        public int ModelsId { get; set; }
+       
         public override string ToString()
         {
-            return $"{Id}. {GraduationYear:yyyy} {Color} {Engine}  ModelsId:{ModelsId}";
+            return $"{ ModelsId}." +
+                $"{GraduationYear:yyyy} " +
+                $"{Price}.Azn " +
+                $"{Color} " +
+                $"{Engine} "+
+                $"{FullType}";
         }
     }
 } 

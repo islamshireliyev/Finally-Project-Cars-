@@ -12,7 +12,7 @@ namespace ConsoleApp.ProjectCar
         {
             Console.InputEncoding = Encoding.Unicode;
             Console.OutputEncoding = Encoding.Unicode;
-            Console.Title = "Project Car a.1";
+            Console.Title = "Project Car C.1";
 
             var brandsMgr = new BrandsMeneger();
             var carsMgr = new CarsMeneger();
@@ -27,69 +27,91 @@ namespace ConsoleApp.ProjectCar
                 case Menu.BrandsAdd:
                     Console.Clear();
                     Brands g = new Brands();
-                    g.Name = ScanerMeneger.ReadString("Masinin brendi: "); ;
+                    g.Name = ScanerMeneger.ReadString("Masinin brendi: ");
                     brandsMgr.Add(g);
                     goto  case Menu.BrandsAll;
                     break;
                 case Menu.BrandsEdit:
+
                     break;
                 case Menu.BrandsRemove:
-                    Brands g1 = brandsMgr.GetAll().FirstOrDefault(g => g.Id == 4);
-                    break;
+                    Console.Clear();
+                    ShowAllBrands(brandsMgr);
+                    int id = ScanerMeneger.ReadInteger("Silmek istediyiniz Markanin Id-sini daxil edin");
+                    Brands g1 = brandsMgr.GetAll().FirstOrDefault(item => item.Id == id);
+                    brandsMgr.Remove(g1);
+                    goto case Menu.BrandsAll;   
                 case Menu.BrandsSingle:
-                    break;
+                    Console.Clear();
+                    ShowAllBrands(brandsMgr);
+                    int idForSingle = ScanerMeneger.ReadInteger("Etrafli baxmaq ucun istediyiniz Markanin Id-sini daxil edin: ");
+                    Brands gSingle = brandsMgr.GetAll().FirstOrDefault(item => item.Id == idForSingle);
+
+                    Console.WriteLine($"--------------------------\n" +
+                        $"Name: {gSingle.Name}\n--------------------------");
+                    goto readMenu;
                 case Menu.BrandsAll:
-                    //Console.Clear();
+                    Console.Clear();
                     ShowAllBrands(brandsMgr);
                     goto readMenu;
                     break;
-               
                 case Menu.ModelsAdd:
                     Console.Clear();
                     Models a = new Models();
                     a.Add = ScanerMeneger.ReadString("Masinin modeli: ");
-                    
+                    Console.WriteLine("--------------------------------------");
                     ShowAllBrands(brandsMgr);
-                    
-                    a.BrandsId = ScanerMeneger.ReadInteger("Masinin marka Id-sini daxil edin");
+                    Console.WriteLine("--------------------------------------");
+                    a.BrandsId = ScanerMeneger.ReadInteger("Masinin marka Id-sini daxil edin: ");
                     modelsMgr.Add(a);
                     goto case Menu.ModelsAll;
-                    break;
                 case Menu.ModelsAll:
-                    //Console.Clear();
+                    Console.Clear();
                     ShowAllModels(modelsMgr);
                     goto readMenu;
-                    break;
-                case Menu.BrandsId:
-                    break;
+               
                 case Menu.CarsAdd:
                     Console.Clear();
                     Cars c = new Cars();
                     c.Color = ScanerMeneger.ReadString("Masinin rengi: ");
-                    c.GraduationYear = ScanerMeneger.ReadDate("Masinin buraxilis ili:");
-                    c.Engine = ScanerMeneger.ReadDouble("Masinin muherriki: ");
+                    c.GraduationYear = ScanerMeneger.ReadDate("Masinin buraxilis ili: ");
+                    c.Engine = ScanerMeneger.ReadString("Masinin muherriki: ");
                     c.FullType = ScanerMeneger.ReadString("Yanacaq novu: ");
-
+                    c.Price = ScanerMeneger.ReadDouble("Qiymetini: ");
                     Console.WriteLine("-----------------------------------");
-                    ShowAllBrands(brandsMgr);
+                    ShowAllModels(modelsMgr);
                     Console.WriteLine("-----------------------------------");
-                    c.ModelsId = ScanerMeneger.ReadInteger("Masinin model Id-sini daxil edin");
+                    c.ModelsId = ScanerMeneger.ReadInteger("Masinin model Id-sini daxil edin: ");
                     carsMgr.Add(c);
                     goto case Menu.CarsAll;
                     break;
                 case Menu.CarsEdit:
                     break;
                 case Menu.CarsRemove:
-                    break;
-                case Menu.CarsSingle:
-                    break;
-                case Menu.CarsAll:
                     Console.Clear();
                     ShowAllCars(carsMgr);
+                    int Id = ScanerMeneger.ReadInteger("Silmek istediyiniz Masinin Id-sini daxil edin");
+                    Cars c1 = carsMgr.GetAll().FirstOrDefault(item => item.Id == Id);
+                    carsMgr.Remove(c1);
+                    goto case Menu.CarsAll;
+                    
+                case Menu.CarsSingle:
+                    Console.Clear();
+                    ShowAllCars(carsMgr);
+                     idForSingle = ScanerMeneger.ReadInteger("Etrafli baxmaq ucun istediyiniz Markanin Id-sini daxil edin: ");
+                    Cars cSingle = carsMgr.GetAll().FirstOrDefault(item => item.Id == idForSingle);
+
+                    Console.WriteLine($"--------------------------\n" +
+                        $"Id: {cSingle.Id}\n--------------------------");
                     goto readMenu;
-                    break;
+                case Menu.CarsAll:
+                    Console.Clear();
+                    ShowAllBrands(brandsMgr);
+                    ShowAllModels(modelsMgr);
+                    ShowAllCars(carsMgr);
+                    goto readMenu;
                 case Menu.All:
-                    //Console.Clear();
+                    Console.Clear();
                     ShowAllBrands(brandsMgr);
                     ShowAllModels(modelsMgr);
                     ShowAllCars(carsMgr);
@@ -99,6 +121,7 @@ namespace ConsoleApp.ProjectCar
                     break;
                 default:
                     break;
+
             }
         lEnd:
             Console.WriteLine("End...........");
@@ -108,7 +131,7 @@ namespace ConsoleApp.ProjectCar
         static void ShowAllBrands(BrandsMeneger brandsMgr)
         {
 
-                Console.WriteLine("------------------------ Brands ------------------------");
+               Console.WriteLine("------------------------ Brands ------------------------");
                 foreach (var item in brandsMgr.GetAll())
                 {
                     Console.WriteLine(item);
@@ -117,7 +140,7 @@ namespace ConsoleApp.ProjectCar
         static void ShowAllModels(ModelsMeneger modelsMgr)
         {
 
-                 Console.WriteLine("------------------------ Models ------------------------");
+                Console.WriteLine("------------------------ Models ------------------------");
                 foreach (var item in modelsMgr.GetAll())
                 {
                     Console.WriteLine(item);
@@ -126,30 +149,24 @@ namespace ConsoleApp.ProjectCar
         static void ShowAllCars(CarsMeneger carsMgr)
         {
 
-                Console.WriteLine("------------------------ Cars ------------------------");
+               Console.WriteLine("------------------------ Cars ------------------------");
                 foreach (var item in carsMgr.GetAll())
                 {
                     Console.WriteLine(item);
                 }
         }
-       
-
         static void PrintMenu()
             {
                 Console.WriteLine(new string('-', Console.WindowWidth));
                 foreach (var item in Enum.GetNames(typeof(Menu)))
                 {
                     Menu m = (Menu)Enum.Parse(typeof(Menu), item);
-
-                    Console.WriteLine($"{((byte)m).ToString().PadLeft(2)}. {item}");
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.WriteLine($"{((byte)m).ToString().PadLeft(2)}. {item}");
+                Console.ResetColor();
                 }
-                Console.WriteLine($"{new string('+', Console.WindowWidth)}\n");
+                Console.WriteLine($"{new string('+', Console.WindowWidth)}");
             }
-
-
-
-
-
 
     }
 }

@@ -15,10 +15,10 @@ namespace ConsoleApp.ProjectCar.Infrastructure
         BrandsSingle,
         BrandsAll,
 
-       
+        
         ModelsAdd,
         ModelsAll,
-        BrandsId,
+        
 
 
         CarsAdd,
@@ -26,18 +26,15 @@ namespace ConsoleApp.ProjectCar.Infrastructure
         CarsRemove,
         CarsSingle,
         CarsAll,
-        ModelsId,
+        
         All,
         Exit
 
-        
-
-
     }
-    public enum FullType
+    public enum FullType :byte
     {
         Diesel,
-        Gsoline,
+        Gasoline,
         Hybrid,
         Electricity
     }

@@ -25,7 +25,6 @@ namespace ConsoleApp.ProjectCar.Manegers
             return value;
         }
 
-
         public static double ReadDouble(string caption)
         {
         l1:
@@ -65,6 +64,7 @@ namespace ConsoleApp.ProjectCar.Manegers
             Console.WriteLine(message);
             Console.ResetColor();
         }
+
         public static DateTime ReadDate(string caption)
         {
         l1:
