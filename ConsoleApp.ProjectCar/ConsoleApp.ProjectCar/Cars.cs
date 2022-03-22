@@ -31,7 +31,8 @@ namespace ConsoleApp.ProjectCar
                 $"{Price}.Azn " +
                 $"{Color} " +
                 $"{Engine} "+
-                $"{FullType}";
+                $"{FullType }";
         }
     }
+   
 } 

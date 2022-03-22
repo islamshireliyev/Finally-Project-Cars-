@@ -20,25 +20,21 @@ namespace ConsoleApp.ProjectCar.Manegers
 
         public void Remove(Brands entity)
         {
-            int len = data.Length;
             int index = Array.IndexOf(data, entity);
 
-            for (int i = 0; i < len; i++)
-            {
-                data[i] = data[i + 1];
-            }
-            Array.Resize(ref data, len + 1);
-            
-        }
-        public void Edit(Brands entity)
-        {
-            int index = Array.IndexOf(data, entity);
             if (index == -1)
                 return;
 
-            data[index] = entity;
+            for (int i = index; i < data.Length-1; i++)
+            {
+                data[i] = data[i + 1];
+            }
+            if (data.Length>0)
+            
+            Array.Resize(ref data, data.Length -1 );
+            
         }
-
+        
 
         //public void Edit(Brands entity)
         //{

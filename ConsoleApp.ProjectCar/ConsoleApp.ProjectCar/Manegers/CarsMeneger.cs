@@ -17,14 +17,19 @@ namespace ConsoleApp.ProjectCar.Manegers
         }
         public void Remove(Cars entity)
         {
-            int len = data.Length;
             int index = Array.IndexOf(data, entity);
 
-            for (int i = 0; i < len; i++)
+            if (index == -1)
+                return;
+
+            for (int i = index; i < data.Length - 1; i++)
             {
                 data[i] = data[i + 1];
             }
-            Array.Resize(ref data, len + 1);
+            if (data.Length > 0)
+
+                Array.Resize(ref data, data.Length - 1);
+
         }
         public Cars[] GetAll()
         {

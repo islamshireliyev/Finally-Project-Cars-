@@ -13,11 +13,10 @@ namespace ConsoleApp.ProjectCar
             Console.InputEncoding = Encoding.Unicode;
             Console.OutputEncoding = Encoding.Unicode;
             Console.Title = "Project Car C.1";
-
+            
             var brandsMgr = new BrandsMeneger();
             var carsMgr = new CarsMeneger();
             var modelsMgr = new ModelsMeneger();
-
         readMenu:
             PrintMenu();
             Menu m = ScanerMeneger.ReadMenu("Menudan secin: ");
@@ -30,14 +29,12 @@ namespace ConsoleApp.ProjectCar
                     g.Name = ScanerMeneger.ReadString("Masinin brendi: ");
                     brandsMgr.Add(g);
                     goto  case Menu.BrandsAll;
-                    break;
                 case Menu.BrandsEdit:
-
                     break;
                 case Menu.BrandsRemove:
                     Console.Clear();
                     ShowAllBrands(brandsMgr);
-                    int id = ScanerMeneger.ReadInteger("Silmek istediyiniz Markanin Id-sini daxil edin");
+                    int id = ScanerMeneger.ReadInteger("Silmek istediyiniz Markanin Id-sini daxil edin: ");
                     Brands g1 = brandsMgr.GetAll().FirstOrDefault(item => item.Id == id);
                     brandsMgr.Remove(g1);
                     goto case Menu.BrandsAll;   
@@ -46,9 +43,19 @@ namespace ConsoleApp.ProjectCar
                     ShowAllBrands(brandsMgr);
                     int idForSingle = ScanerMeneger.ReadInteger("Etrafli baxmaq ucun istediyiniz Markanin Id-sini daxil edin: ");
                     Brands gSingle = brandsMgr.GetAll().FirstOrDefault(item => item.Id == idForSingle);
-
                     Console.WriteLine($"--------------------------\n" +
-                        $"Name: {gSingle.Name}\n--------------------------");
+                    $"Name: {gSingle.Name}\n");
+                    foreach(var item in modelsMgr.GetAll())
+                    {
+                        if (item.BrandsId==gSingle.Id)
+                            Console.WriteLine(item);
+                    }
+                    foreach (var item in carsMgr.GetAll())
+                    {
+                        if (item.ModelsId==gSingle.Id)
+                            Console.WriteLine(item);
+                    }
+                    Console.WriteLine($"--------------------------");
                     goto readMenu;
                 case Menu.BrandsAll:
                     Console.Clear();
@@ -69,14 +76,13 @@ namespace ConsoleApp.ProjectCar
                     Console.Clear();
                     ShowAllModels(modelsMgr);
                     goto readMenu;
-               
                 case Menu.CarsAdd:
                     Console.Clear();
                     Cars c = new Cars();
                     c.Color = ScanerMeneger.ReadString("Masinin rengi: ");
                     c.GraduationYear = ScanerMeneger.ReadDate("Masinin buraxilis ili: ");
                     c.Engine = ScanerMeneger.ReadString("Masinin muherriki: ");
-                    c.FullType = ScanerMeneger.ReadString("Yanacaq novu: ");
+                    c.FullType = ScanerMeneger.ReadString("Yanacaq novu: " );
                     c.Price = ScanerMeneger.ReadDouble("Qiymetini: ");
                     Console.WriteLine("-----------------------------------");
                     ShowAllModels(modelsMgr);
@@ -84,7 +90,6 @@ namespace ConsoleApp.ProjectCar
                     c.ModelsId = ScanerMeneger.ReadInteger("Masinin model Id-sini daxil edin: ");
                     carsMgr.Add(c);
                     goto case Menu.CarsAll;
-                    break;
                 case Menu.CarsEdit:
                     break;
                 case Menu.CarsRemove:
@@ -94,15 +99,18 @@ namespace ConsoleApp.ProjectCar
                     Cars c1 = carsMgr.GetAll().FirstOrDefault(item => item.Id == Id);
                     carsMgr.Remove(c1);
                     goto case Menu.CarsAll;
-                    
                 case Menu.CarsSingle:
                     Console.Clear();
                     ShowAllCars(carsMgr);
-                     idForSingle = ScanerMeneger.ReadInteger("Etrafli baxmaq ucun istediyiniz Markanin Id-sini daxil edin: ");
-                    Cars cSingle = carsMgr.GetAll().FirstOrDefault(item => item.Id == idForSingle);
-
+                    int idemForSingle = ScanerMeneger.ReadInteger("Etrafli baxmaq ucun istediyiniz Markanin Id-sini daxil edin: ");
+                    Cars cSingle = carsMgr.GetAll().FirstOrDefault(item => item.Id == idemForSingle);
                     Console.WriteLine($"--------------------------\n" +
-                        $"Id: {cSingle.Id}\n--------------------------");
+                    $"Color: {cSingle.Color}\n" +
+                    $"GraduationYear: {cSingle.GraduationYear}\n" +
+                    $"Engine: {cSingle.Engine}\n" +
+                    $"FullType: {cSingle.FullType}\n" +
+                    $"Price: {cSingle.Price}\n");
+                    Console.WriteLine("--------------------------");
                     goto readMenu;
                 case Menu.CarsAll:
                     Console.Clear();
@@ -121,7 +129,6 @@ namespace ConsoleApp.ProjectCar
                     break;
                 default:
                     break;
-
             }
         lEnd:
             Console.WriteLine("End...........");
