@@ -11,9 +11,10 @@ namespace ConsoleApp.ProjectCar
         static int counter = 0;
         public Cars()
         {
-            this.Id = ++counter;
+            counter++;
+            Id = counter;
         }
-        public int Id { get; private set; }
+        public int Id { get;  set; }
         public int ModelsId { get; set; }
         public DateTime GraduationYear { get; set; }
 
@@ -22,17 +23,17 @@ namespace ConsoleApp.ProjectCar
         public string Color { get; set; }
 
         public string Engine { get; set; }
-        public string FullType { get; set; }
+        public string Fuel { get; set; }
        
         public override string ToString()
         {
-            return $"{ ModelsId}." +
-                $"{GraduationYear:yyyy} " +
-                $"{Price}.Azn " +
-                $"{Color} " +
-                $"{Engine} "+
-                $"{FullType }";
-        }
+            return $"{ ModelsId}" +
+                   $" Buraxilis ili: {GraduationYear:yyyy}\n " +
+                   $" qiymeti: {Price}.Azn \n " +
+                   $" Rengi: {Color} \n" +
+                   $" Muherrik: {Engine} \n" +
+                   $" Yanacaq novu: {this.Fuel }\n";
+        }          
     }
    
 } 

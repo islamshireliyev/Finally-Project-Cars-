@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp.ProjectCar.Infrastructure
 {
-    public enum Menu :byte
+    internal enum Menu :byte
     {
         
         BrandsAdd = 1,
@@ -17,6 +17,9 @@ namespace ConsoleApp.ProjectCar.Infrastructure
 
         
         ModelsAdd,
+        ModelsEdit,
+        ModelsRemove,
+        ModelsSingle,
         ModelsAll,
         
 
@@ -31,11 +34,5 @@ namespace ConsoleApp.ProjectCar.Infrastructure
         Exit
 
     }
-    public enum FullType :byte
-    {
-        Diesel,
-        Gasoline,
-        Hybrid,
-        Electricity
-    }
+   
 }

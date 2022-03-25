@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp.ProjectCar.Manegers
 {
-    public static class ScanerMeneger
+    internal class ScanerMeneger
     {
         public static int ReadInteger(string caption)
         {
@@ -48,7 +48,7 @@ namespace ConsoleApp.ProjectCar.Manegers
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             string value=Console.ReadLine();
 
-            if (string.IsNullOrWhiteSpace(value))
+            if (string.IsNullOrEmpty(value))
             {
                 PrintError("Duzgun melumat deyil,yeniden cehd edin");
                 goto l1;
@@ -87,7 +87,7 @@ namespace ConsoleApp.ProjectCar.Manegers
         {
         l1:
             Console.Write(caption);
-
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
             if (!Enum.TryParse(Console.ReadLine(), out Menu m))
             {
                 PrintError("Menudan secin");
@@ -95,6 +95,19 @@ namespace ConsoleApp.ProjectCar.Manegers
             }
             Console.ResetColor();
             return m;
+        }
+        public static Fuel ReadFuelType(string caption)
+        {
+        l1:
+            Console.Write(caption);
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            if (!Enum.TryParse(Console.ReadLine(), out Fuel f))
+            {
+                PrintError("Menudan secin");
+                goto l1;
+            }
+            Console.ResetColor();
+            return f;
         }
     }
 }

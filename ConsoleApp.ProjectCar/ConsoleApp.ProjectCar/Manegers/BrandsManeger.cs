@@ -23,26 +23,49 @@ namespace ConsoleApp.ProjectCar.Manegers
             int index = Array.IndexOf(data, entity);
 
             if (index == -1)
+            {
                 return;
-
+            }
             for (int i = index; i < data.Length-1; i++)
             {
                 data[i] = data[i + 1];
             }
-            if (data.Length>0)
-            
-            Array.Resize(ref data, data.Length -1 );
-            
+            if (data.Length > 0)
+            {
+                Array.Resize(ref data, data.Length - 1);
+            }
         }
-        
 
-        //public void Edit(Brands entity)
-        //{
-        //    int index =Array.IndexOf(data, entity);
-        //    if (index == -1)
-        //        return;
-        //    data[index] = entity;
-        //}
+        public void BrandsEdit(int value)
+        {
+            for (int i = 0; i < data.Length; i++)
+            {
+                if (data[i].Id == value)
+                {
+                    Console.WriteLine("Brend adini sec...");
+                    string newNameBrand = ScanerMeneger.ReadString("Brend adini daxil edin: ");
+                    data[i].Name = data[i].Name.Replace(data[i].Name, newNameBrand);
+                    break;
+                }
+            }
+        }
+        public void GetSingleBrand(int value)
+        {
+            
+            string singleBrands = "";
+            for (int i = 0; i < data.Length; i++)
+            {
+                if (data[i].Id == value)
+                {
+                    singleBrands = $"Brand ID: {data[i].Id} | Brand name: {data[i].Name} ";
+                   
+                    break;
+                }
+            }
+            Console.WriteLine("******************** Brands ********************");
+            Console.WriteLine(singleBrands);
+           
+        }
         public Brands[] GetAll()
         {
             return data;

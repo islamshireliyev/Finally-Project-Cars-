@@ -11,16 +11,17 @@ namespace ConsoleApp.ProjectCar
         static int counter = 0;
         public Brands()
         {
-            this.Id = ++counter;
+             counter++;
+            Id = counter;
         }
-        public int Id { get; private set; }
+        public int Id { get;  set; }
         public string Name { get; set; }
        
         
         public override string ToString()
         {
 
-            return $"{Id}. Brend:{Name}";
+            return $"{Id}. Brend: {Name}";
         }
     }
 }

@@ -8,8 +8,13 @@ namespace ConsoleApp.ProjectCar
 {
     internal class Models
     {
-
-        public string Id { get; private set; }
+        static int counter=0;
+        public Models()
+        {
+            counter++;
+            ModelId = counter;
+        }
+        public int ModelId { get; set; }
 
         public string Add { get; set; }
 
@@ -17,7 +22,7 @@ namespace ConsoleApp.ProjectCar
 
         public override string ToString()
         {
-            return $"{BrandsId}. Model:{Add} ";
+            return $"ModelId: {ModelId} | Brand Id: {BrandsId}. | Model:{Add} ";
         }
         
     }
